@@ -77,15 +77,6 @@ Technologies and Tools
 - Development Environments: Jupyter Notebook, Visual Studio Code
 - Hardware: Standard CPU/GPU configurations for model training
 
-### Project Structure
-
-neurostock/
-├── app.py               # Streamlit web app
-├── requirements.txt     # Project dependencies
-├── models/              # Saved model weights (optional)
-├── notebooks/           # Jupyter notebooks for experimentation
-└── README.md            # This file
-
 ### Workflow
 The Streamlit app (app.py) retrieves stock data via yfinance for user-selected tickers.
 Data is preprocessed (normalized, sequenced) and split into training/testing sets based on user-defined parameters.

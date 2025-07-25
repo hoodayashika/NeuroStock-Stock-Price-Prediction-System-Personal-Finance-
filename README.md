@@ -39,10 +39,10 @@ NeuroStock implements three deep learning models using TensorFlow and Keras, eac
 - Configuration: Uses Model API for custom architecture, same optimizer and loss.
 
 Training Parameters:
-- - Epochs: Up to 50 (configurable 10–100).
-- - Batch Size: 32.
-- - Validation Split: 10%.
-- EarlyStopping: Patience of 5 to prevent overfitting.
+  - Epochs: Up to 50 (configurable 10–100).
+  - Batch Size: 32.
+  - Validation Split: 10%.
+  - EarlyStopping: Patience of 5 to prevent overfitting.
 Users can adjust parameters (lookback, train-test split, epochs) via the Streamlit app, with live loss curves displayed.
 
 ### 3. Performance Evaluation
@@ -53,78 +53,31 @@ Models are evaluated using five metrics to provide a comprehensive assessment:
 - R-squared (R²): Indicates variance explained by the model.
 - Directional Accuracy: Percentage of correct up/down price movement predictions.
 - Directional Precision: Proportion of correct positive (up) predictions among predicted positives.
-- 
+  
 Results are visualized in the Streamlit app with interactive plots and a metrics comparison table.
 
 ### 4. Web Deployment
-
 NeuroStock is deployed as a Streamlit web application, offering a user-friendly interface for real-time analysis. Key features include:
+- Ticker Selection: Choose from predefined tickers (e.g., AAPL, MSFT, GOOG) or enter custom tickers.
+- Parameter Tuning: Adjust lookback (30–100 days), training split (50–90%), epochs (10–100), and prediction horizon (7–60 days).
+- Visualization: Displays historical prices, 50/200-day moving averages, prediction vs. actual plots, error histograms, and training loss curves.
+- Model Comparison: Interactive dashboard comparing RMSE, MAE, R², Accuracy, and Precision across models.
+- Future Forecasting: Generates 7–60 day predictions with trend direction, volatility, price ranges, and investment insights (with disclaimers).
+- Progress Tracking: Real-time progress bars and status updates during model training.
 
-
-
-
-
-Ticker Selection: Choose from predefined tickers (e.g., AAPL, MSFT, GOOG) or enter custom tickers.
-
-
-
-Parameter Tuning: Adjust lookback (30–100 days), training split (50–90%), epochs (10–100), and prediction horizon (7–60 days).
-
-
-
-Visualization: Displays historical prices, 50/200-day moving averages, prediction vs. actual plots, error histograms, and training loss curves.
-
-
-
-Model Comparison: Interactive dashboard comparing RMSE, MAE, R², Accuracy, and Precision across models.
-
-
-
-Future Forecasting: Generates 7–60 day predictions with trend direction, volatility, price ranges, and investment insights (with disclaimers).
-
-
-
-Progress Tracking: Real-time progress bars and status updates during model training.
-
-Implementation
-
+## Implementation
 Technologies and Tools
 
+- Programming Language: Python 3.8+
+- Deep Learning Libraries: TensorFlow, Keras
+- Data Processing: pandas, numpy, scikit-learn (MinMaxScaler)
+- Data Retrieval: yfinance
+- Visualization: matplotlib, seaborn
+- Web Framework: Streamlit
+- Development Environments: Jupyter Notebook, Visual Studio Code
+- Hardware: Standard CPU/GPU configurations for model training
 
-
-
-
-Programming Language: Python 3.8+
-
-
-
-Deep Learning Libraries: TensorFlow, Keras
-
-
-
-Data Processing: pandas, numpy, scikit-learn (MinMaxScaler)
-
-
-
-Data Retrieval: yfinance
-
-
-
-Visualization: matplotlib, seaborn
-
-
-
-Web Framework: Streamlit
-
-
-
-Development Environments: Jupyter Notebook, Visual Studio Code
-
-
-
-Hardware: Standard CPU/GPU configurations for model training
-
-Project Structure
+### Project Structure
 
 neurostock/
 ├── app.py               # Streamlit web app
@@ -133,248 +86,73 @@ neurostock/
 ├── notebooks/           # Jupyter notebooks for experimentation
 └── README.md            # This file
 
-Workflow
-
-
-
-
-
+### Workflow
 The Streamlit app (app.py) retrieves stock data via yfinance for user-selected tickers.
-
-
-
 Data is preprocessed (normalized, sequenced) and split into training/testing sets based on user-defined parameters.
-
-
-
 Three models (LSTM, CNN, Hybrid CNN-LSTM) are trained with live progress updates and loss curve visualization.
-
-
-
 Predictions are generated, evaluated using five metrics, and visualized alongside historical trends.
-
-
-
 Users can compare model performance, adjust settings, and generate future forecasts interactively.
 
-Results
-
+## Results
 Tested on GOOG stock with a 70:30 train-test split and 60-day lookback, NeuroStock delivers the following performance:
 
-
-
-
-
-LSTM Model:
-
-
-
-
-
-RMSE: 4.4134
-
-
-
-MAE: 3.4920
-
-
-
-R²: 0.9802
-
-
-
-Directional Accuracy: 0.4742
-
-
-
-Directional Precision: 0.5037
-
-
-
-Strength: Minimizes numerical errors, excels in capturing long-term trends.
-
-
-
-Weakness: Lower directional metrics, less effective for trend prediction.
-
-
-
-CNN Model:
-
-
-
-
-
-RMSE: 14.6011
-
-
-
-MAE: 10.6289
-
-
-
-R²: 0.7827
-
-
-
-Directional Accuracy: 0.5054
-
-
-
-Directional Precision: 0.5295
-
-
-
-Strength: Leads in directional metrics, ideal for short-term trend prediction.
-
-
-
-Weakness: Higher numerical errors, less precise for price forecasting.
-
-
-
-Hybrid CNN-LSTM Model:
-
-
-
-
-
-RMSE: 9.2183
-
-
-
-MAE: 6.9318
-
-
-
-R²: 0.9134
-
-
-
-Directional Accuracy: 0.4769
-
-
-
-Directional Precision: 0.5056
-
-
-
-Strength: Balances numerical accuracy and directional prediction, suitable for versatile applications.
-
-
-
-Visualizations: The Streamlit app displays:
-
-
-
-
+### LSTM Model:
+- RMSE: 4.4134
+- MAE: 3.4920
+- R²: 0.9802
+- Directional Accuracy: 0.4742
+- Directional Precision: 0.5037
+- Strength: Minimizes numerical errors, excels in capturing long-term trends.
+- Weakness: Lower directional metrics, less effective for trend prediction.
+
+### CNN Model:
+- RMSE: 14.6011
+- MAE: 10.6289
+- R²: 0.7827
+- Directional Accuracy: 0.5054
+- Directional Precision: 0.5295
+- Strength: Leads in directional metrics, ideal for short-term trend prediction.
+- Weakness: Higher numerical errors, less precise for price forecasting.
+
+### Hybrid CNN-LSTM Model:
+- RMSE: 9.2183
+- MAE: 6.9318
+- R²: 0.9134
+- Directional Accuracy: 0.4769
+- Directional Precision: 0.5056
+- Strength: Balances numerical accuracy and directional prediction, suitable for versatile applications.
+- Visualizations: The Streamlit app displays:
 
 Historical price plots with 50/200-day moving averages.
-
-
-
 Prediction vs. actual plots for each model.
-
-
-
 Error histograms showing error distribution.
-
-
-
 Training loss curves for model convergence.
-
-
-
 Future Forecasting: 30-day forecasts for GOOG indicate an upward trend, with metadata on volatility, price ranges, and peak days, enhancing investment decision-making.
 
-Challenges Overcome
-
-
-
-
-
+## Challenges Overcome
 Overfitting: Mitigated using Dropout layers (0.2) and EarlyStopping (patience=5) to ensure robust generalization.
+- Data Quality: Addressed by dropping null values and normalizing data to maintain consistency.
+- Model Complexity: Optimized architectures (e.g., 50 LSTM units, 64/32 CNN filters) for efficiency on standard hardware.
+- User Accessibility: Streamlit interface simplifies complex model interactions, with progress bars and interactive visualizations.
 
+## Limitations
+- Data Scope: Relies on historical closing prices, excluding external factors like news sentiment or macroeconomic indicators.
+- Market Anomalies: Performance may degrade during unpredictable events (e.g., black swan events).
+- Uncertainty Quantification: Lacks confidence intervals for predictions, limiting risk assessment.
+- Single Stock Focus: Primarily validated on GOOG; broader testing across stocks is needed.
 
-
-Data Quality: Addressed by dropping null values and normalizing data to maintain consistency.
-
-
-
-Model Complexity: Optimized architectures (e.g., 50 LSTM units, 64/32 CNN filters) for efficiency on standard hardware.
-
-
-
-User Accessibility: Streamlit interface simplifies complex model interactions, with progress bars and interactive visualizations.
-
-Limitations
-
-
-
-
-
-Data Scope: Relies on historical closing prices, excluding external factors like news sentiment or macroeconomic indicators.
-
-
-
-Market Anomalies: Performance may degrade during unpredictable events (e.g., black swan events).
-
-
-
-Uncertainty Quantification: Lacks confidence intervals for predictions, limiting risk assessment.
-
-
-
-Single Stock Focus: Primarily validated on GOOG; broader testing across stocks is needed.
-
-Contributions
-
+## Contributions
 NeuroStock advances stock market prediction research by:
+- Comprehensive Model Comparison: Benchmarks LSTM, CNN, and Hybrid CNN-LSTM models, leveraging their complementary strengths.
+- Directional Metrics: Incorporates Directional Accuracy and Precision, critical for investment decisions, addressing gaps in prior studies.
+- Interactive Web App: Streamlit deployment makes advanced AI accessible to non-technical users, with real-time visualizations and parameter tuning.
+- Scalable Framework: Supports multiple tickers and future enhancements, ensuring adaptability for diverse financial applications.
 
-
-
-
-
-Comprehensive Model Comparison: Benchmarks LSTM, CNN, and Hybrid CNN-LSTM models, leveraging their complementary strengths.
-
-
-
-Directional Metrics: Incorporates Directional Accuracy and Precision, critical for investment decisions, addressing gaps in prior studies.
-
-
-
-Interactive Web App: Streamlit deployment makes advanced AI accessible to non-technical users, with real-time visualizations and parameter tuning.
-
-
-
-Scalable Framework: Supports multiple tickers and future enhancements, ensuring adaptability for diverse financial applications.
-
-Future Directions
-
+## Future Directions
 To enhance NeuroStock’s capabilities, planned improvements include:
-
-
-
-
-
-Sentiment Analysis: Integrate Natural Language Processing (NLP) to analyze news and social media sentiment, improving responsiveness to market events.
-
-
-
-Multivariate Inputs: Incorporate technical indicators (e.g., RSI, MACD) and macroeconomic variables for robust modeling.
-
-
-
-Uncertainty Quantification: Implement Bayesian methods to provide prediction intervals for risk assessment.
-
-
-
-Cloud Deployment: Host on AWS or GCP with Docker for continuous learning and scalability.
-
-
-
-Cross-Market Validation: Test on diverse asset classes (e.g., ETFs, cryptocurrencies) and global exchanges.
-
-
-
-Reinforcement Learning: Develop trading strategies based on predictions to extend utility beyond forecasting.
+- Sentiment Analysis: Integrate Natural Language Processing (NLP) to analyze news and social media sentiment, improving responsiveness to market events.
+- Multivariate Inputs: Incorporate technical indicators (e.g., RSI, MACD) and macroeconomic variables for robust modeling.
+- Uncertainty Quantification: Implement Bayesian methods to provide prediction intervals for risk assessment.
+- Cloud Deployment: Host on AWS or GCP with Docker for continuous learning and scalability.
+- Cross-Market Validation: Test on diverse asset classes (e.g., ETFs, cryptocurrencies) and global exchanges.
+- Reinforcement Learning: Develop trading strategies based on predictions to extend utility beyond forecasting.
